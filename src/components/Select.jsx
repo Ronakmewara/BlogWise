@@ -4,6 +4,7 @@ function Select({
     options,
     label,
     className,
+    labelColor,
     ...props
 },ref) {
     const id = useId();
@@ -11,7 +12,7 @@ function Select({
   return (
     <div className='w-full'>
 {label && 
-    <label className='' htmlFor={id} >
+    <label className={`text-white ${labelColor} inter`} htmlFor={id} >
         {label}
     </label>
 }

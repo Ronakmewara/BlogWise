@@ -46,10 +46,15 @@ export class AuthService{
 
  async getCurrentUser(){
     try {
-        return await this.account.get();
+        const currentUser = await this.account.get()
+        if(currentUser){
+            return currentUser;
+        } else {
+            console.log("no user FOund");
+        }
 
     } catch (error) {
-        console.log("getCurrentUser :: ERROR " ,error);
+        return null;
     }
     return null;
  }

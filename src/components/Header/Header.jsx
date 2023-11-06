@@ -1,12 +1,13 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Logo , LogoutBtn} from '../index'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-
+import logo from '../../assets/logo.png'
 function Header() {
     const authStatus = useSelector((state) => state.auth.status)
     const navigate = useNavigate();
+    const [mobileNav, setmobileNav] = useState()
 
     const navItems = [
         {
@@ -14,11 +15,7 @@ function Header() {
             url: "/",
             active:true
         },
-        {
-            name:'Login',
-            url: "/login",
-            active:!authStatus
-        },
+       
         {
             name:'Signup',
             url: "/signup",
@@ -31,27 +28,38 @@ function Header() {
         },
         {
             name:'Add Post',
-            url: "/add-post",
+            url: "/Add-post",
             active:authStatus
-        },     
+        },
+           
+          
+        {
+            name:'Login',
+            url: "/login",
+            active:!authStatus
+        },  
     ]
   return (
-    <header className='py-3 shadow bg-gray-500'>
+    <header className='py-3 shadow text-white   '>
         <Container> 
-            <nav className='flex ' >
+            <nav className='md:flex items-center h-16 hidden ' >
                 <div className="mr-4">
                     <Link to= "/" >
                         <Logo width='70px'/>
                     </Link>
                 </div>
-                <ul className='flex ml-auto'>
+                <ul className='flex ml-auto font-semibold text-base inter'>
                     {
                         navItems.map((item) =>  item.active ?
                          (
                             <li key={item.name}>
-                                    <button className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full' onClick={() => navigate(item.url)} >
+                                
+                               
+
+                                    <button className='inline-block px-6 py-2 duration-200 hover:bg-white/10 rounded-xl' onClick={() => navigate(item.url)} >
                                         {item.name}
                                     </button>
+                                 
                             </li>
                          ) 
                          : null)
@@ -64,6 +72,41 @@ function Header() {
                         )
                     }               
                 </ul>
+            </nav>
+            <nav className='md:hidden ' >
+                <div className="mr-4">
+                </div>
+                <div className='flex justify-between duration-200 px-5'>
+                <Link to= "/" >
+                        <Logo width='70px'/>
+                    </Link>
+                     <button onClick={() => setmobileNav(!mobileNav)} >{ !mobileNav ?  (<i  className="fa-solid fa-bars font-bold text-2xl "></i>) : (<i  className="fa-solid font-bold text-2xl fa-xmark"></i>)} </button>
+                </div>
+               {  mobileNav && <ul className='flex flex-col gap-3 justify-center items-center ml-auto font-semibold text-base inter'>
+                 
+                    {
+                        navItems.map((item) =>  item.active ?
+                         (
+                            <li key={item.name}>
+                                
+                               
+
+                                    <button className='inline-block px-6 py-2 duration-200 hover:bg-white/10 rounded-xl' onClick={() => {navigate(item.url); setmobileNav(false)}} >
+                                        {item.name}
+                                    </button>
+                                 
+                            </li>
+                         ) 
+                         : null)
+                    }  
+                    {
+                        authStatus && (
+                            <li>
+                                <LogoutBtn/>
+                            </li>
+                        )
+                    }               
+                </ul>}
             </nav>
         </Container>
     </header>

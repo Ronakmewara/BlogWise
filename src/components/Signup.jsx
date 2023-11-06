@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Logo, Button, Input } from "../components/index";
+import {   Button, Input } from "../components/index";
 import { useForm } from "react-hook-form";
 import authservice from "../appwrite/auth";
 import { login } from "../store/authSlice";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo_new.png"
 
 function Signup() {
   const navigate = useNavigate();
@@ -33,14 +34,14 @@ function Signup() {
         className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
       >
         <div className="mb-2 flex justify-center">
-          <span className="inline-block w-full max-w-[100px]">
-            <Logo width="100%" />
-          </span>
+        <span className=" w-16 bg-[rgb(23,49,72)] p-2 rounded-full">
+                         <img src={logo} alt="" />
+                    </span>
         </div>
         <h2 className="text-center text-2xl font-bold leading-tight">
           Sign up to create account
         </h2>
-        <p className="mt-2 text-center text-base text-black/60">
+        <p className="mt-2 mb-5 text-center text-base text-black/60">
           Already have an account?&nbsp;
           <Link
             to="/login"

@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import authservice from '../appwrite/auth';
 import {Button, Input, Logo ,} from '../components/index'
-import {login as authlogin} from '../store/authSlice'
+ import { login } from '../store/authSlice';
  import { Link } from 'react-router-dom';
-
+import logo from "../assets/logo_new.png"
 function Login() {
 
     const navigate = useNavigate()
@@ -14,16 +14,17 @@ function Login() {
     const {register , handleSubmit} = useForm();
     const [error, seterror] = useState("");
 
-    const login = async(data) => {
+    const handleLogin = async(data) => {
             seterror("");
             try {
                 const session =  await authservice.login(data)
                 if(session){
                     const userData = await authservice.getCurrentUser()
-                    if(userData)
-                        dispatch(authlogin(userData));
-                    navigate("/")  
-                    
+                    if(userData){
+                        
+                        dispatch(login(userData));
+                        navigate("/all-posts")                      
+                    }
                 }
             } catch (error) {
                 seterror(error.message)
@@ -35,12 +36,12 @@ function Login() {
     <div className='flex items-center justify-center w-full '>
           <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
           <div className="mb-2 flex justify-center"> 
-          <span className="inline-block w-full max-w-[100px]">
-                         <Logo width='100%' />
+          <span className=" w-16 bg-[rgb(23,49,72)] p-2 rounded-full">
+                         <img src={logo} alt="" />
                     </span>
           </div>
           <h2 className="text-center text-2xl font-bold leading-tight">Sign in to your account</h2>
-          <p className="mt-2 text-center text-base text-black/60">
+          <p className="mt-2 mb-5 text-center text-base text-black/60">
                     Don&apos;t have any account?&nbsp;
                     <Link
                         to="/signup"
@@ -51,7 +52,7 @@ function Login() {
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
-        <form onSubmit={handleSubmit(login)} className='mt-8'>
+        <form onSubmit={handleSubmit(handleLogin)} className='mt-8'>
             <div className="space-y-5">
                 <Input
                 label = "Email : "

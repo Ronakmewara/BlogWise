@@ -1,6 +1,7 @@
 import {   ID , Storage , Query , Client , Databases,} from 'appwrite'
 import  confenv  from '../envconf/confenv'
  
+ 
 
 export class PostService{
 
@@ -15,11 +16,12 @@ export class PostService{
         this.bucket = new Storage(this.client);
     }
 
-    async createPost({title , slug , content , featuredImage , status , userId}){
+    async createPost({title , content , featuredImage , status , userId}){
         try {
+           
              return await this.databases.createDocument(
                 confenv.appwriteDatabaseId, confenv.appwriteCollectionId,
-                slug,
+                ID.unique(),
                 {
                     title ,
                     content, 
@@ -79,7 +81,20 @@ export class PostService{
         }
     }
 
-    async getPosts(queries = [Query.equal("status" , "active")]){
+    //get only limited Posts
+
+    async getLimitedPosts(queries = [Query.equal("status" , "active") , Query.limit(3)]){
+        try {
+            
+            return await this.databases.listDocuments(confenv.appwriteDatabaseId,
+                confenv.appwriteCollectionId, queries);
+
+        } catch (error) {
+            console.log("get Limited Posts :: ERROR" , error);
+        }
+    }
+
+    async getPosts(queries = [Query.equal("status" , "active") ]){
         try {
             return await this.databases.listDocuments(
                 confenv.appwriteDatabaseId, confenv.appwriteCollectionId,

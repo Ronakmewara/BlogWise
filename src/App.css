@@ -1,0 +1,62 @@
+ .limited{
+
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+ }
+ .background{
+    background-image: linear-gradient(to top, #09203f 0%, #193449 100%);
+ }
+ .inter{
+    font-family: 'Inter', sans-serif;
+ }
+          
+          
+ .btn-grad {
+   background-image: linear-gradient(to right, #abbaab 0%, #ffffff  51%, #abbaab  100%);
+   margin: 10px;
+   padding: 15px 45px;
+   text-align: center;
+   
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: black;            
+   
+   border-radius: 10px;
+   display: block;
+ }
+          
+ .btn-grad1 {
+   background-image: linear-gradient(to right, #abbaab 0%, #ffffff  51%, #abbaab  100%);
+ 
+    
+   text-align: center;
+   
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: black;            
+   
+   border-radius: 10px;
+   display: block;
+ }
+
+ .btn-grad:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #000000;
+   text-decoration: none;
+   cursor: pointer;
+ }
+ .btn-grad1:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #000000;
+   text-decoration: none;
+   cursor: pointer;
+ }
+  .gradient{
+   background-image: linear-gradient(to right, #abbaab 0%, #ffffffc6  51%, #abbaab  100%);
+   transition: 0.5s;
+ 
+  }
+  .gradient:hover {
+   background-position: right center;
+  }
