@@ -13,7 +13,7 @@
           
           
  .btn-grad {
-   background-image: linear-gradient(to right, #abbaab 0%, #ffffff  51%, #abbaab  100%);
+   background-image: linear-gradient(to right, #eaeaea 0%, #ffffff  51%, #abbaab  100%);
    margin: 10px;
    padding: 15px 45px;
    text-align: center;
@@ -27,7 +27,7 @@
  }
           
  .btn-grad1 {
-   background-image: linear-gradient(to right, #abbaab 0%, #ffffff  51%, #abbaab  100%);
+   background-image: linear-gradient(to right, #eaeaea 0%, #ffffff  51%, #abbaab  100%);
  
     
    text-align: center;
