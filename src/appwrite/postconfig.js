@@ -136,8 +136,8 @@ export class PostService{
             }
     }
 
-    getFilePreview(fileId){
-            return this.bucket.getFilePreview(
+  getFilePreview(fileId){
+            return    this.bucket.getFilePreview(
                 confenv.appwriteBucketId,
                 fileId
             )

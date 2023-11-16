@@ -20,6 +20,7 @@ import LoginPage from './Pages/LoginPage'
 import Postpage from './Pages/Postpage'
 import SignupPage from './Pages/SignupPage'
 import App from '../App'
+import Loader from './Loader'
 
 export {
     Logo,
@@ -42,5 +43,6 @@ export {
     LoginPage,
     Postpage,
     SignupPage,
-    App
+    App,
+    Loader
 }

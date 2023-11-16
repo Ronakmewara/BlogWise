@@ -12,10 +12,12 @@ function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const {register , handleSubmit} = useForm();
-    const [error, seterror] = useState("");
+    const [Errormsg, setErrormsg] = useState("");
+    const [loading, setLoading] = useState(false)
 
     const handleLogin = async(data) => {
-            seterror("");
+                setLoading(true);
+            setErrormsg("")
             try {
                 const session =  await authservice.login(data)
                 if(session){
@@ -23,15 +25,19 @@ function Login() {
                     if(userData){
                         
                         dispatch(login(userData));
-                        navigate("/all-posts")                      
-                    }
+                        navigate("/all-posts") 
+
+                    }                                                            
                 }
             } catch (error) {
-                seterror(error.message)
+               setErrormsg(error.message)
+            } finally{
+                setLoading(false)
             }
     }
-
-
+ 
+      
+    
   return (
     <div className='flex items-center justify-center w-full '>
           <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
@@ -50,7 +56,8 @@ function Login() {
                         Sign Up
                     </Link>
         </p>
-        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+        {Errormsg && <p className="text-red-600 mt-1 text-center">{Errormsg}</p>}
+          
 
         <form onSubmit={handleSubmit(handleLogin)} className='mt-8'>
             <div className="space-y-5">
@@ -80,8 +87,8 @@ function Login() {
                 className='w-full'
                 type='submit'
 
-                >
-                    Sign in
+                >{loading ? 'Signing in...' : 'Sign in'}
+                     
                 </Button>
                 
             </div>

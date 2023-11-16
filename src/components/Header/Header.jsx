@@ -3,9 +3,10 @@ import React, { useState } from 'react'
 import { Container, Logo , LogoutBtn} from '../index'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import logo from '../../assets/logo.png'
+ 
 function Header() {
     const authStatus = useSelector((state) => state.auth.status)
+    const userData = useSelector((state) => state.auth.userData)
     const navigate = useNavigate();
     const [mobileNav, setmobileNav] = useState()
 
@@ -48,7 +49,14 @@ function Header() {
                         <Logo width='70px'/>
                     </Link>
                 </div>
-                <ul className='flex ml-auto font-semibold text-base inter'>
+                <ul className='flex ml-auto font-semibold text-base items-center inter'>
+                {
+                                    userData && (
+                                        <li className=' opacity-60' >
+                                          welcome {userData.name}
+                                        </li>
+                                    )
+             }
                     {
                         navItems.map((item) =>  item.active ?
                          (
@@ -64,6 +72,7 @@ function Header() {
                          ) 
                          : null)
                     }  
+                  
                     {
                         authStatus && (
                             <li>
@@ -94,11 +103,22 @@ function Header() {
                                     <button className='inline-block px-6 py-2 duration-200 hover:bg-white/10 rounded-xl' onClick={() => {navigate(item.url); setmobileNav(false)}} >
                                         {item.name}
                                     </button>
+
+
                                  
                             </li>
+
                          ) 
                          : null)
                     }  
+                            {
+                                    userData && (
+                                        <li>
+                                            {userData.name}
+                                        </li>
+                                    )
+                            }
+
                     {
                         authStatus && (
                             <li>
