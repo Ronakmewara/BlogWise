@@ -19,9 +19,9 @@ function PostCard({post}) {
 
     <div  className="p-5">
         
-            <h5  className="mb-2 max-w-full  text-xl md:text-2xl font-bold tracking-tight text-gray-900 text-black">{post.title}</h5>
+            <h5  className="mb-2 max-w-full  text-xl md:text-2xl font-bold tracking-tight text-gray-900">{post.title}</h5>
         
-        <div  className="mb-3  limited font-normal w-full h-12  text-gray-700 text-black">{parse(post.content)}</div>
+        <div  className="mb-3  limited font-normal w-full h-12  text-gray-700 ">{parse(post.content)}</div>
         <p  className="inline-flex items-center  px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 darsk:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Read more
               
