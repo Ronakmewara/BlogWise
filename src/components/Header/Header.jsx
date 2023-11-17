@@ -52,7 +52,7 @@ function Header() {
                 <ul className='flex ml-auto font-semibold text-base items-center inter'>
                 {
                                     userData && (
-                                        <li className=' opacity-60' >
+                                        <li className=' resp opacity-60' >
                                           welcome {userData.name}
                                         </li>
                                     )
